@@ -4,6 +4,23 @@ import torch.nn.init as init
 import torch.nn.functional as F
 
 
+def norm2d(kind: str, channels: int, groups: int = 32) -> nn.Module:
+    kind = kind.lower()
+    if kind == "bn":
+        return nn.BatchNorm2d(channels)
+    if kind == "gn":
+        g = min(groups, channels)
+        while channels % g != 0 and g > 1:
+            g -= 1
+        return nn.GroupNorm(g, channels, affine=True)
+    if kind == "in":
+        return nn.InstanceNorm2d(channels, affine=True, track_running_stats=False)
+    if kind == "ln":
+        # 2D conv에선 채널 단위 LayerNorm 대용으로 GroupNorm(num_groups=1)
+        return nn.GroupNorm(1, channels, affine=True)
+    raise ValueError(f"Unknown norm kind: {kind}")
+
+
 def initialize_weights(net_l, scale=1):
     if not isinstance(net_l, list):
         net_l = [net_l]
@@ -407,10 +424,10 @@ class ResBlock(nn.Module):
         super().__init__()
         self.block = nn.Sequential(
             nn.Conv2d(channels, channels, 3, 1, 1, bias=False),
-            nn.BatchNorm2d(channels),
+            norm2d('gn', channels, groups=32),
             nn.LeakyReLU(0.2, True),
             nn.Conv2d(channels, channels, 3, 1, 1, bias=False),
-            nn.BatchNorm2d(channels),
+            norm2d('gn', channels, groups=32),
         )
     def forward(self, x):
         return x + self.block(x)
@@ -496,6 +513,7 @@ class ImprovedUNet(nn.Module):
             nf //= 2
         # Final conv:
         self.final = nn.Conv2d(n_feature //2 + in_nc, out_nc, 3, 1, 1, bias=True)
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         if self.noise:
@@ -510,4 +528,4 @@ class ImprovedUNet(nn.Module):
         for up, skip in zip(self.ups, reversed(skips)):
             x = up(x, skip)
         x = torch.cat([x, orig], dim=1)
-        return self.final(x)
+        return self.sigmoid(self.final(x))
