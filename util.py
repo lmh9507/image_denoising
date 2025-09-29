@@ -60,7 +60,7 @@ class Structure_loss(nn.Module):
             pred2: (B, C, H, W) / pred2 = network(clean)
             target: (B, C, H, W)
         Returns:
-            total_loss: alpha·L1_pixel + beta·structure_loss
+            total_loss: alpha·L1_pixel + beta·TV loss + gamma·Consistency loss
         """
         pixel_loss = self.l1(pred, target)
         tv1   = self.l1(pred2[:, :, 1:, :], pred2[:, :, :-1, :])
