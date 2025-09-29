@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data import Dataset
 
 from arch_unet import UNet, RESNET, ImprovedUNet
-from util import L1FFT
+from util import L1FFT, Structure_loss # added
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--noisetype", type=str, default="gauss25")
@@ -315,10 +315,11 @@ elif 'UNetImproved' in opt.log_name:
 
 
 # Loss
-if 'FFT' in opt.log_name:
-    criterion = L1FFT()
-else:
-    criterion = nn.L1Loss()
+# if 'FFT' in opt.log_name:
+#     criterion = L1FFT()
+# else:
+#     criterion = nn.L1Loss()
+criterion = Structure_loss() # added
 
 if opt.parallel:
     network = torch.nn.DataParallel(network)
@@ -357,8 +358,9 @@ for epoch in range(1, opt.n_epoch + 1):
 
         optimizer.zero_grad()
 
-        noisy_output = network(noisy)
-        loss = criterion(noisy_output, clean)
+        noisy_output, clean_ = network(noisy), network(clean) # added
+        # loss = criterion(noisy_output, clean)
+        loss = criterion(noisy_output, clean_, clean) # added
         total_loss.append(loss.item())
         loss_ = F.l1_loss(noisy_output, clean)
         l1_loss.append(loss_)
