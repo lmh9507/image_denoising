@@ -1,6 +1,7 @@
 data
 notebook
 results
+results_ft
 pretrained_model
 *.pyc
 *.db
