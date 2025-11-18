@@ -9,7 +9,7 @@ export CUDA_VISIBLE_DEVICES=2
 # Evaluation Settings
 # ---------------------------
 DATA_DIR="./dataset/m1"
-CHECKPOINT="./results/UNetImproved/2025-09-02-12-28/epoch_model_009.pth"
+CHECKPOINT="results/UNetImproved/2025-07-23-13-31/epoch_model_100.pth"
 SAVE_DIR="./eval_improvedunet_test"
 N_CHANNEL=1
 N_FEATURE=48
@@ -22,4 +22,5 @@ python3 evaluation.py \
     --checkpoint $CHECKPOINT \
     --save_dir $SAVE_DIR \
     --n_channel $N_CHANNEL \
-    --n_feature $N_FEATURE
+    --n_feature $N_FEATURE \
+    --log_name "UNetImproved"
