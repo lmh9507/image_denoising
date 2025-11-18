@@ -2,6 +2,7 @@ data
 notebook
 results
 results_ft
+results_eval_adapter
 pretrained_model
 *.pyc
 *.db
