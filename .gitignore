@@ -4,6 +4,7 @@ results
 results_ft
 results_ft_syn
 results_ft_syn_memory
+results_704_eval_adapter_memory
 results_eval_adapter
 pretrained_model
 *.pyc
