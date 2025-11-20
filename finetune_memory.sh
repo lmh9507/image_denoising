@@ -19,7 +19,7 @@ N_FEATURE=48            # ← base UNet/ResNet feature 수 (기존 학습과 맞
 N_CHANNEL=1             # ← 흑백 이미지면 1
 
 LR=1e-4                 # ← adapter 학습 learning rate
-N_EPOCH=100              # ← finetune epoch 수
+N_EPOCH=50              # ← finetune epoch 수
 BATCH_SIZE=4
 NUM_WORKERS=4
 
@@ -31,7 +31,7 @@ LAMBDA_GRAD=0.1         # ← gradient consistency loss 가중치
 
 # === 메모리 뱅크 관련 ===
 NUM_MEMORY_IMAGES=5     # ← memory로 사용할 (clean,noise) 이미지 쌍 개수
-MEMORY_STRIDE=64        # ← memory patch 추출 stride (<= PATCH_SIZE)
+MEMORY_STRIDE=4        # ← memory patch 추출 stride (<= PATCH_SIZE)
 
 # === IQSL(Intensity-Quantized Structural Loss) 관련 ===
 LAMBDA_IQSL=0.1         # ← IQSL 전체 가중치 (0 으로 두면 구조 loss 비활성화)

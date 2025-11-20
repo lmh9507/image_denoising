@@ -19,7 +19,7 @@ python finetune_memory.py `
   --patch_size 128 `
   --patches_per_image 16 `
   --num_memory_images 5 `
-  --memory_stride 64 `
+  --memory_stride 4 `
   --lambda_iqsl 0.1 `
   --iqsl_q1 0.2 `
   --iqsl_q2 0.8 `

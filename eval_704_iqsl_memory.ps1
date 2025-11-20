@@ -14,7 +14,7 @@ python evaluation_704_iqsl_memory.py `
   --patch_size 128 `
   --overlap 64 `
   --num_memory_images 5 `
-  --memory_stride 64
+  --memory_stride 4
   # --compute_iq_iou `
   # --iq_low_q 0.25 `
   # --iq_high_q 0.75 `
