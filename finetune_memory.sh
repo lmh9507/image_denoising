@@ -8,8 +8,8 @@ GPU_ID=5                                # ← 사용할 GPU 번호
 B_DOMAIN_DATA="./data/syn"              # ← B-domain root (clean/, noise/ 포함)
 PRETRAINED_CKPT="results/UNetImproved/2025-11-18-17-39/epoch_model_001.pth"  # ← A-domain base 모델 ckpt 경로
 
-SAVE_ROOT="./results_ft_syn_memory"     # ← finetune 결과(ckpt + val 이미지) 저장 루트
-LOG_NAME="UNetImproved_memory_adapter_IQSL"  # ← 실험 이름(서브폴더명)
+SAVE_ROOT="./results_ft_syn_memory_v5"     # ← finetune 결과(ckpt + val 이미지) 저장 루트
+LOG_NAME="UNetImproved_memory_adapter_IQSL_v5"  # ← 실험 이름(서브폴더명)
 
 ###############################
 # 하이퍼파라미터 설정

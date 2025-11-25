@@ -13,9 +13,9 @@ B_DOMAIN_DATA="./data/syn"
 BASE_CKPT="results/UNetImproved/2025-11-18-17-39/epoch_model_001.pth"
 
 # memory adapter finetune에서 저장한 adapter-only ckpt
-ADAPTER_CKPT="./results_ft_syn_memory/UNetImproved_memory_adapter_IQSL/epoch_adapter_only_020.pth"
+ADAPTER_CKPT="./results_ft_syn_memory_v4/UNetImproved_memory_adapter_IQSL_v4/epoch_adapter_only_050.pth"
 
-SAVE_DIR="./results_704_eval_adapter_memory"
+SAVE_DIR="./results_704_eval_adapter_memory_v4"
 
 ###############################
 # 모델 / 메모리 설정 (finetune과 동일하게 맞추기)
