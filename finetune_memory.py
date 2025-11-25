@@ -1192,7 +1192,6 @@ class HyperGatedResidualAdapter_FFT(nn.Module):
         return out
 
 
-
 class DenoiserWithMemoryAdapter(nn.Module):
     """
     - base_model: 미리 학습된 denoiser (freeze)
