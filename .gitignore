@@ -4,7 +4,15 @@ results
 results_ft
 results_ft_syn
 results_ft_syn_memory
+results_ft_syn_memory_v2
+results_ft_syn_memory_v3
+results_ft_syn_memory_v4
+results_ft_syn_memory_v5
 results_704_eval_adapter_memory
+results_704_eval_adapter_memory_v2
+results_704_eval_adapter_memory_v3
+results_704_eval_adapter_memory_v4
+results_704_eval_adapter_memory_v5
 results_eval_adapter
 pretrained_model
 *.pyc
